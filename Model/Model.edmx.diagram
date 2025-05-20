@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="887f3dcad5134bbe90c7aaa72e5bc5d2" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="ahorcadoDBModel.Categories" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ahorcadoDBModel.Languages" Width="1.5" PointX="10.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ahorcadoDBModel.Matches" Width="1.5" PointX="7.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ahorcadoDBModel.MatchResults" Width="1.5" PointX="5.375" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ahorcadoDBModel.MatchScores" Width="1.5" PointX="7.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ahorcadoDBModel.MatchStatuses" Width="1.5" PointX="5.375" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ahorcadoDBModel.Players" Width="1.5" PointX="10.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ahorcadoDBModel.Words" Width="1.5" PointX="7.75" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_Words_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_Players_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_Words_Language" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_Matches_Player1" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_Matches_Player2" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_Matches_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_Matches_Word" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_MatchScores_Match" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_MatchScores_Result" ManuallyRouted="false" />
+        <AssociationConnector Association="ahorcadoDBModel.FK_MatchScores_Player" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.476961163355448" PointY="6.0687874348958326" />
+          <ConnectorPoint PointX="11.476961163355448" PointY="6.8884558485020344" />
+          <ConnectorPoint PointX="9.25" PointY="6.8884558485020344" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
