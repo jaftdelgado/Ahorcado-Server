@@ -13,5 +13,19 @@ namespace Services.PlayerServices
 
             else return null;
         }
+
+        public bool RegisterPlayer(PlayerDTO player)
+        {
+            var playerDAO = new PlayerDAO();
+            return playerDAO.RegisterPlayer(player);
+        }
+
+        public bool UpdatePlayerInfo(PlayerDTO player)
+        {
+            var playerDAO = new PlayerDAO();
+            return playerDAO.UpdatePlayerInfo(player);
+        }
+
+
     }
 }
