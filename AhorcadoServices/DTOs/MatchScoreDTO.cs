@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace AhorcadoServices.DTOs
+namespace Services.DTOs
 {
     [DataContract]
     public class MatchScoreDTO

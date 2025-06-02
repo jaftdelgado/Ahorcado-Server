@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Services;
+using System;
+using System.ServiceModel;
 
 namespace Host
 {
@@ -6,9 +8,26 @@ namespace Host
     {
         static void Main(string[] args)
         {
-            DateTime currentDateTime = DateTime.Now;
-            Console.WriteLine($"AhorcadoServer is running - Start Time: [{currentDateTime}]");
-            Console.ReadLine();
+            using (ServiceHost serviceHost = new ServiceHost(typeof(MainService)))
+            {
+                try
+                {
+                    serviceHost.Open();
+
+                    DateTime currentDateTime = DateTime.Now;
+                    Console.WriteLine($"AhorcadoServer is running - Start Time: [{currentDateTime}]");
+                    Console.ReadLine();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error starting services: {ex.Message}");
+                }
+                finally
+                {
+                    serviceHost.Abort();
+                    Console.ReadLine();
+                }
+            }
         }
     }
 }
