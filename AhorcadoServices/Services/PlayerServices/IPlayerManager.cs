@@ -8,5 +8,11 @@ namespace Services.PlayerServices
     {
         [OperationContract]
         PlayerDTO LogIn(string username, string password);
+
+        [OperationContract]
+        bool RegisterPlayer(PlayerDTO player);
+
+        [OperationContract]
+        bool UpdatePlayerInfo(PlayerDTO player);
     }
 }
