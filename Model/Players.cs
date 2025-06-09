@@ -14,14 +14,6 @@ namespace Model
     
     public partial class Players
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Players()
-        {
-            this.Matches = new HashSet<Matches>();
-            this.Matches1 = new HashSet<Matches>();
-            this.MatchScores = new HashSet<MatchScores>();
-        }
-    
         public int PlayerID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -35,11 +27,5 @@ namespace Model
         public Nullable<int> SelectedLanguageID { get; set; }
     
         public virtual Languages Languages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Matches> Matches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Matches> Matches1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MatchScores> MatchScores { get; set; }
     }
 }

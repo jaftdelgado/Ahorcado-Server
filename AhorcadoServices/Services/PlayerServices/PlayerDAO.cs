@@ -2,12 +2,10 @@
 using Model;
 using System.Linq;
 
-namespace Services
-    .PlayerServices
+namespace Services.PlayerServices
 {
     public class PlayerDAO
     {
-
         public PlayerDTO LogIn(string username, string password)
         {
             using (var context = new ahorcadoDBEntities())

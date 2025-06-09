@@ -21,6 +21,5 @@ namespace Model
     
         public virtual Matches Matches { get; set; }
         public virtual MatchResults MatchResults { get; set; }
-        public virtual Players Players { get; set; }
     }
 }

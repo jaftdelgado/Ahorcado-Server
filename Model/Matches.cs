@@ -28,8 +28,6 @@ namespace Model
         public Nullable<System.DateTime> EndDate { get; set; }
         public int StatusID { get; set; }
     
-        public virtual Players Players { get; set; }
-        public virtual Players Players1 { get; set; }
         public virtual MatchStatuses MatchStatuses { get; set; }
         public virtual Words Words { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

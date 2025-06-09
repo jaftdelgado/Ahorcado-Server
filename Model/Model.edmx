@@ -4,26 +4,26 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ahorcadoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ahorcadoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="16" Nullable="false" />
         </EntityType>
         <EntityType Name="Languages">
           <Key>
             <PropertyRef Name="LanguageID" />
           </Key>
-          <Property Name="LanguageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
           <Property Name="LanguageName" Type="varchar" MaxLength="16" Nullable="false" />
         </EntityType>
         <EntityType Name="Matches">
           <Key>
             <PropertyRef Name="MatchID" />
           </Key>
-          <Property Name="MatchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatchID" Type="int" Nullable="false" />
           <Property Name="Player1" Type="int" Nullable="false" />
           <Property Name="Player2" Type="int" />
           <Property Name="WordID" Type="int" Nullable="false" />
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="ResultID" />
           </Key>
-          <Property Name="ResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResultID" Type="int" Nullable="false" />
           <Property Name="ResultName" Type="varchar" MaxLength="16" Nullable="false" />
         </EntityType>
         <EntityType Name="MatchScores">
@@ -52,7 +52,7 @@
           <Key>
             <PropertyRef Name="StatusID" />
           </Key>
-          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
           <Property Name="StatusName" Type="varchar" MaxLength="16" Nullable="false" />
         </EntityType>
         <EntityType Name="Players">
@@ -63,7 +63,7 @@
           <Property Name="FirstName" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="BirthDay" Type="date" Nullable="false" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="48" Nullable="false" />
           <Property Name="ProfilePic" Type="varbinary(max)" />
           <Property Name="TotalScore" Type="int" Nullable="false" />
@@ -75,37 +75,13 @@
           <Key>
             <PropertyRef Name="WordID" />
           </Key>
-          <Property Name="WordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WordID" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
           <Property Name="LanguageID" Type="int" Nullable="false" />
           <Property Name="Word" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="Difficult" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Matches_Player1">
-          <End Role="Players" Type="Self.Players" Multiplicity="1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Players">
-              <PropertyRef Name="PlayerID" />
-            </Principal>
-            <Dependent Role="Matches">
-              <PropertyRef Name="Player1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Matches_Player2">
-          <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Players">
-              <PropertyRef Name="PlayerID" />
-            </Principal>
-            <Dependent Role="Matches">
-              <PropertyRef Name="Player2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Matches_Status">
           <End Role="MatchStatuses" Type="Self.MatchStatuses" Multiplicity="1" />
           <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
@@ -142,18 +118,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MatchScores_Player">
-          <End Role="Players" Type="Self.Players" Multiplicity="1" />
-          <End Role="MatchScores" Type="Self.MatchScores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Players">
-              <PropertyRef Name="PlayerID" />
-            </Principal>
-            <Dependent Role="MatchScores">
-              <PropertyRef Name="PlayerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MatchScores_Result">
           <End Role="MatchResults" Type="Self.MatchResults" Multiplicity="1" />
           <End Role="MatchScores" Type="Self.MatchScores" Multiplicity="*" />
@@ -166,7 +130,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Players_Language">
+        <Association Name="FK_Players_Languages">
           <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
           <End Role="Players" Type="Self.Players" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,14 +175,6 @@
           <EntitySet Name="MatchStatuses" EntityType="Self.MatchStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Words" EntityType="Self.Words" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Matches_Player1" Association="Self.FK_Matches_Player1">
-            <End Role="Players" EntitySet="Players" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Matches_Player2" Association="Self.FK_Matches_Player2">
-            <End Role="Players" EntitySet="Players" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
           <AssociationSet Name="FK_Matches_Status" Association="Self.FK_Matches_Status">
             <End Role="MatchStatuses" EntitySet="MatchStatuses" />
             <End Role="Matches" EntitySet="Matches" />
@@ -231,15 +187,11 @@
             <End Role="Matches" EntitySet="Matches" />
             <End Role="MatchScores" EntitySet="MatchScores" />
           </AssociationSet>
-          <AssociationSet Name="FK_MatchScores_Player" Association="Self.FK_MatchScores_Player">
-            <End Role="Players" EntitySet="Players" />
-            <End Role="MatchScores" EntitySet="MatchScores" />
-          </AssociationSet>
           <AssociationSet Name="FK_MatchScores_Result" Association="Self.FK_MatchScores_Result">
             <End Role="MatchResults" EntitySet="MatchResults" />
             <End Role="MatchScores" EntitySet="MatchScores" />
           </AssociationSet>
-          <AssociationSet Name="FK_Players_Language" Association="Self.FK_Players_Language">
+          <AssociationSet Name="FK_Players_Languages" Association="Self.FK_Players_Languages">
             <End Role="Languages" EntitySet="Languages" />
             <End Role="Players" EntitySet="Players" />
           </AssociationSet>
@@ -252,8 +204,7 @@
             <End Role="Words" EntitySet="Words" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ahorcadoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -261,7 +212,7 @@
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="CategoryName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Words" Relationship="Self.FK_Words_Category" FromRole="Categories" ToRole="Words" />
         </EntityType>
@@ -269,24 +220,22 @@
           <Key>
             <PropertyRef Name="LanguageID" />
           </Key>
-          <Property Name="LanguageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
           <Property Name="LanguageName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Players" Relationship="Self.FK_Players_Language" FromRole="Languages" ToRole="Players" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_Players_Languages" FromRole="Languages" ToRole="Players" />
           <NavigationProperty Name="Words" Relationship="Self.FK_Words_Language" FromRole="Languages" ToRole="Words" />
         </EntityType>
         <EntityType Name="Matches">
           <Key>
             <PropertyRef Name="MatchID" />
           </Key>
-          <Property Name="MatchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatchID" Type="Int32" Nullable="false" />
           <Property Name="Player1" Type="Int32" Nullable="false" />
           <Property Name="Player2" Type="Int32" />
           <Property Name="WordID" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Players" Relationship="Self.FK_Matches_Player1" FromRole="Matches" ToRole="Players" />
-          <NavigationProperty Name="Players1" Relationship="Self.FK_Matches_Player2" FromRole="Matches" ToRole="Players" />
           <NavigationProperty Name="MatchStatuses" Relationship="Self.FK_Matches_Status" FromRole="Matches" ToRole="MatchStatuses" />
           <NavigationProperty Name="Words" Relationship="Self.FK_Matches_Word" FromRole="Matches" ToRole="Words" />
           <NavigationProperty Name="MatchScores" Relationship="Self.FK_MatchScores_Match" FromRole="Matches" ToRole="MatchScores" />
@@ -295,7 +244,7 @@
           <Key>
             <PropertyRef Name="ResultID" />
           </Key>
-          <Property Name="ResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResultID" Type="Int32" Nullable="false" />
           <Property Name="ResultName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="MatchScores" Relationship="Self.FK_MatchScores_Result" FromRole="MatchResults" ToRole="MatchScores" />
         </EntityType>
@@ -310,13 +259,12 @@
           <Property Name="Points" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Matches" Relationship="Self.FK_MatchScores_Match" FromRole="MatchScores" ToRole="Matches" />
           <NavigationProperty Name="MatchResults" Relationship="Self.FK_MatchScores_Result" FromRole="MatchScores" ToRole="MatchResults" />
-          <NavigationProperty Name="Players" Relationship="Self.FK_MatchScores_Player" FromRole="MatchScores" ToRole="Players" />
         </EntityType>
         <EntityType Name="MatchStatuses">
           <Key>
             <PropertyRef Name="StatusID" />
           </Key>
-          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
           <Property Name="StatusName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_Status" FromRole="MatchStatuses" ToRole="Matches" />
         </EntityType>
@@ -328,23 +276,20 @@
           <Property Name="FirstName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="48" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProfilePic" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="TotalScore" Type="Int32" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SelectedLanguageID" Type="Int32" />
-          <NavigationProperty Name="Languages" Relationship="Self.FK_Players_Language" FromRole="Players" ToRole="Languages" />
-          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_Player1" FromRole="Players" ToRole="Matches" />
-          <NavigationProperty Name="Matches1" Relationship="Self.FK_Matches_Player2" FromRole="Players" ToRole="Matches" />
-          <NavigationProperty Name="MatchScores" Relationship="Self.FK_MatchScores_Player" FromRole="Players" ToRole="MatchScores" />
+          <NavigationProperty Name="Languages" Relationship="Self.FK_Players_Languages" FromRole="Players" ToRole="Languages" />
         </EntityType>
         <EntityType Name="Words">
           <Key>
             <PropertyRef Name="WordID" />
           </Key>
-          <Property Name="WordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WordID" Type="Int32" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="LanguageID" Type="Int32" Nullable="false" />
           <Property Name="Word" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
@@ -366,7 +311,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Players_Language">
+        <Association Name="FK_Players_Languages">
           <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
           <End Role="Players" Type="Self.Players" Multiplicity="*" />
           <ReferentialConstraint>
@@ -387,30 +332,6 @@
             </Principal>
             <Dependent Role="Words">
               <PropertyRef Name="LanguageID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Matches_Player1">
-          <End Role="Players" Type="Self.Players" Multiplicity="1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Players">
-              <PropertyRef Name="PlayerID" />
-            </Principal>
-            <Dependent Role="Matches">
-              <PropertyRef Name="Player1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Matches_Player2">
-          <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Players">
-              <PropertyRef Name="PlayerID" />
-            </Principal>
-            <Dependent Role="Matches">
-              <PropertyRef Name="Player2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -462,18 +383,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MatchScores_Player">
-          <End Role="Players" Type="Self.Players" Multiplicity="1" />
-          <End Role="MatchScores" Type="Self.MatchScores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Players">
-              <PropertyRef Name="PlayerID" />
-            </Principal>
-            <Dependent Role="MatchScores">
-              <PropertyRef Name="PlayerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ahorcadoDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Categories" />
           <EntitySet Name="Languages" EntityType="Self.Languages" />
@@ -487,21 +396,13 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Words" EntitySet="Words" />
           </AssociationSet>
-          <AssociationSet Name="FK_Players_Language" Association="Self.FK_Players_Language">
+          <AssociationSet Name="FK_Players_Languages" Association="Self.FK_Players_Languages">
             <End Role="Languages" EntitySet="Languages" />
             <End Role="Players" EntitySet="Players" />
           </AssociationSet>
           <AssociationSet Name="FK_Words_Language" Association="Self.FK_Words_Language">
             <End Role="Languages" EntitySet="Languages" />
             <End Role="Words" EntitySet="Words" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Matches_Player1" Association="Self.FK_Matches_Player1">
-            <End Role="Players" EntitySet="Players" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Matches_Player2" Association="Self.FK_Matches_Player2">
-            <End Role="Players" EntitySet="Players" />
-            <End Role="Matches" EntitySet="Matches" />
           </AssociationSet>
           <AssociationSet Name="FK_Matches_Status" Association="Self.FK_Matches_Status">
             <End Role="MatchStatuses" EntitySet="MatchStatuses" />
@@ -517,10 +418,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_MatchScores_Result" Association="Self.FK_MatchScores_Result">
             <End Role="MatchResults" EntitySet="MatchResults" />
-            <End Role="MatchScores" EntitySet="MatchScores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MatchScores_Player" Association="Self.FK_MatchScores_Player">
-            <End Role="Players" EntitySet="Players" />
             <End Role="MatchScores" EntitySet="MatchScores" />
           </AssociationSet>
         </EntityContainer>
