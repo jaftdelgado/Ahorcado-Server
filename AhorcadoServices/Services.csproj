@@ -61,9 +61,18 @@
     <Compile Include="IMainManager.cs" />
     <Compile Include="MainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CategoryServices\CategoryDAO.cs" />
+    <Compile Include="Services\CategoryServices\CategoryService.cs" />
+    <Compile Include="Services\CategoryServices\ICategoryManager.cs" />
+    <Compile Include="Services\MatchServices\IMatchManager.cs" />
+    <Compile Include="Services\MatchServices\MatchDAO.cs" />
+    <Compile Include="Services\MatchServices\MatchService.cs" />
     <Compile Include="Services\PlayerServices\IPlayerManager.cs" />
     <Compile Include="Services\PlayerServices\PlayerDAO.cs" />
     <Compile Include="Services\PlayerServices\PlayerService.cs" />
+    <Compile Include="Services\WordServices\IWordManager.cs" />
+    <Compile Include="Services\WordServices\WordDAO.cs" />
+    <Compile Include="Services\WordServices\WordService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -75,5 +84,6 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
