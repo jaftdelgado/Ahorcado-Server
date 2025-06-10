@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "AhorcadoService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{D71A217A-4F1D-4A33-935E-60C8620B92E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallbackServices", "CallbackServices\CallbackServices.csproj", "{75478F6A-F251-4B69-AABD-1FBC7692D7D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D71A217A-4F1D-4A33-935E-60C8620B92E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D71A217A-4F1D-4A33-935E-60C8620B92E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D71A217A-4F1D-4A33-935E-60C8620B92E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75478F6A-F251-4B69-AABD-1FBC7692D7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75478F6A-F251-4B69-AABD-1FBC7692D7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75478F6A-F251-4B69-AABD-1FBC7692D7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75478F6A-F251-4B69-AABD-1FBC7692D7D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
