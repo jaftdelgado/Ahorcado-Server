@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Services.DTOs;
 using Model;
 
 namespace AhorcadoServices.Services.MatchServices
 {
     public class MatchDAO
     {
-        public bool CreateMatch(int player1Id, int wordId)
+        public MatchDTO CreateMatch(int player1Id, int wordId)
         {
             using (var context = new ahorcadoDBEntities())
             {
@@ -20,12 +17,22 @@ namespace AhorcadoServices.Services.MatchServices
                     WordID = wordId,
                     CreateDate = DateTime.Now,
                     EndDate = null,
-                    StatusID = 1
+                    StatusID = 1 // O el status que corresponda
                 };
 
                 context.Matches.Add(match);
                 context.SaveChanges();
-                return true;
+
+                return new MatchDTO
+                {
+                    MatchID = match.MatchID,
+                    Player1 = match.Player1,
+                    Player2 = match.Player2,
+                    WordID = match.WordID,
+                    CreateDate = match.CreateDate,
+                    EndDate = match.EndDate,
+                    StatusID = match.StatusID
+                };
             }
         }
     }

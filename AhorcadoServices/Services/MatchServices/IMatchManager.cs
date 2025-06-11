@@ -12,6 +12,6 @@ namespace AhorcadoServices.Services.MatchServices
     public interface IMatchManager
     {
         [OperationContract]
-        bool CreateMatch(int player1Id, int wordId);
+        MatchDTO CreateMatch(int player1Id, int wordId);
     }
 }

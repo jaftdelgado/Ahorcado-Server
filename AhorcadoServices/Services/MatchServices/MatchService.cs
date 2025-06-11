@@ -1,4 +1,5 @@
 ﻿using AhorcadoServices.Services.MatchServices;
+using Services.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Services.MatchServices
 {
     public class MatchService : IMatchManager
     {
-        public bool CreateMatch(int player1Id, int wordId)
+        public MatchDTO CreateMatch(int player1Id, int wordId)
         {
             var dao = new MatchDAO();
             return dao.CreateMatch(player1Id, wordId);
