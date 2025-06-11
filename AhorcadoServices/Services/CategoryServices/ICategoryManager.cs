@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Services.DTOs;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace AhorcadoServices.Services.CategoryServices
@@ -7,6 +8,6 @@ namespace AhorcadoServices.Services.CategoryServices
     public interface ICategoryManager
     {
         [OperationContract]
-        List<string> GetCategories();
+        List<CategoryDTO> GetCategories();
     }
 }

@@ -38,7 +38,7 @@ namespace Services
 
 
         #region CategoryServices
-        public List<string> GetCategories() => _categoryService.GetCategories();
+        public List<CategoryDTO> GetCategories() => _categoryService.GetCategories();
         #endregion
 
 
@@ -50,7 +50,7 @@ namespace Services
 
 
         #region MatchServices
-        public bool CreateMatch(int player1Id, int wordId)
+        public MatchDTO CreateMatch(int player1Id, int wordId)
             => _matchService.CreateMatch(player1Id, wordId);
         #endregion
     }

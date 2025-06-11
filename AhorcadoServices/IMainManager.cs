@@ -15,7 +15,7 @@ namespace Services
         bool Ping();
 
         [OperationContract]
-        List<string> GetCategories();
+        List<CategoryDTO> GetCategories();
 
         [OperationContract]
         List<int> GetDifficults(int categoryId);
@@ -24,6 +24,6 @@ namespace Services
         List<WordDTO> GetWords(int categoryId, int difficult);
 
         [OperationContract]
-        bool CreateMatch(int player1Id, int wordId);
+        MatchDTO CreateMatch(int player1Id, int wordId);
     }
 }
