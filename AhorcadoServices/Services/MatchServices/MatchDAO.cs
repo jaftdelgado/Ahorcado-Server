@@ -1,6 +1,7 @@
 ﻿using Model;
 using Services.DTOs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AhorcadoServices.Services.MatchServices
@@ -65,6 +66,28 @@ namespace AhorcadoServices.Services.MatchServices
                     EndDate = match.EndDate,
                     StatusID = match.StatusID
                 };
+            }
+        }
+
+        public List<AvailableMatchDTO> GetAvailableMatches()
+        {
+            using (var context = new ahorcadoDBEntities())
+            {
+                var query = from m in context.Matches
+                            where m.StatusID == 1 && m.Player2 == null
+                            join p in context.Players on m.Player1 equals p.PlayerID
+                            join w in context.Words on m.WordID equals w.WordID
+                            join c in context.Categories on w.CategoryID equals c.CategoryID
+                            select new AvailableMatchDTO
+                            {
+                                MatchID = m.MatchID,
+                                CreatorName = p.FirstName + " " + p.LastName,
+                                WordCategory = c.CategoryName,
+                                Difficulty = w.CategoryID,
+                                CreateDate = m.CreateDate
+                            };
+
+                return query.ToList();
             }
         }
     }

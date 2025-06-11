@@ -58,6 +58,9 @@ namespace Services
 
         public MatchDTO JoinMatch(int matchId, int player2Id)
             => _matchService.JoinMatch(matchId, player2Id);
+
+        public List<AvailableMatchDTO> GetAvailableMatches()
+            => _matchService.GetAvailableMatches();
         #endregion
 
         #region LanguageServices
