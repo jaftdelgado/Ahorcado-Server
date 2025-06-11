@@ -1,4 +1,5 @@
 ﻿using AhorcadoServices.Services.CategoryServices;
+using AhorcadoServices.Services.LanguageServices;
 using AhorcadoServices.Services.MatchServices;
 using AhorcadoServices.Services.WordServices;
 using Services.DTOs;
@@ -17,6 +18,7 @@ namespace Services
         private readonly ICategoryManager _categoryService;
         private readonly IWordManager _wordService;
         private readonly IMatchManager _matchService;
+        private readonly ILanguageManager _languageService;
 
         public MainService()
         {
@@ -24,6 +26,7 @@ namespace Services
             _categoryService = new CategoryService();
             _wordService = new WordService();
             _matchService = new MatchService();
+            _languageService = new LanguageService();
         }
 
         public bool Ping() { return true; }
@@ -43,15 +46,22 @@ namespace Services
 
 
         #region WordServices
-        public List<int> GetDifficults(int categoryId) => _wordService.GetDifficults(categoryId);
+        public List<int> GetDifficults(int categoryId, int languageId) => _wordService.GetDifficults(categoryId,languageId);
 
-        public List<WordDTO> GetWords(int categoryId, int difficult) => _wordService.GetWords(categoryId, difficult);
+        public List<WordDTO> GetWords(int categoryId, int difficult, int languageId) => _wordService.GetWords(categoryId, difficult, languageId);
         #endregion
 
 
         #region MatchServices
         public MatchDTO CreateMatch(int player1Id, int wordId)
             => _matchService.CreateMatch(player1Id, wordId);
+
+        public MatchDTO JoinMatch(int matchId, int player2Id)
+            => _matchService.JoinMatch(matchId, player2Id);
+        #endregion
+
+        #region LanguageServices
+        public List<LanguageDTO> GetLanguages() => _languageService.GetLanguages();
         #endregion
     }
 }

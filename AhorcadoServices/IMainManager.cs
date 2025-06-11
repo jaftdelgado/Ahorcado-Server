@@ -18,12 +18,18 @@ namespace Services
         List<CategoryDTO> GetCategories();
 
         [OperationContract]
-        List<int> GetDifficults(int categoryId);
+        List<int> GetDifficults(int categoryId, int languageId);
 
         [OperationContract]
-        List<WordDTO> GetWords(int categoryId, int difficult);
+        List<WordDTO> GetWords(int categoryId, int difficult, int languageId);
 
         [OperationContract]
         MatchDTO CreateMatch(int player1Id, int wordId);
+
+        [OperationContract]
+        MatchDTO JoinMatch(int matchId, int player2Id);
+
+        [OperationContract]
+        List<LanguageDTO> GetLanguages();
     }
 }
