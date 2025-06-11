@@ -23,7 +23,7 @@
           <Key>
             <PropertyRef Name="MatchID" />
           </Key>
-          <Property Name="MatchID" Type="int" Nullable="false" />
+          <Property Name="MatchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Player1" Type="int" Nullable="false" />
           <Property Name="Player2" Type="int" />
           <Property Name="WordID" Type="int" Nullable="false" />
@@ -82,42 +82,6 @@
           <Property Name="Description" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="Difficult" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Matches_Status">
-          <End Role="MatchStatuses" Type="Self.MatchStatuses" Multiplicity="1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MatchStatuses">
-              <PropertyRef Name="StatusID" />
-            </Principal>
-            <Dependent Role="Matches">
-              <PropertyRef Name="StatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Matches_Word">
-          <End Role="Words" Type="Self.Words" Multiplicity="1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Words">
-              <PropertyRef Name="WordID" />
-            </Principal>
-            <Dependent Role="Matches">
-              <PropertyRef Name="WordID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MatchScores_Match">
-          <End Role="Matches" Type="Self.Matches" Multiplicity="1" />
-          <End Role="MatchScores" Type="Self.MatchScores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Matches">
-              <PropertyRef Name="MatchID" />
-            </Principal>
-            <Dependent Role="MatchScores">
-              <PropertyRef Name="MatchID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MatchScores_Result">
           <End Role="MatchResults" Type="Self.MatchResults" Multiplicity="1" />
           <End Role="MatchScores" Type="Self.MatchScores" Multiplicity="*" />
@@ -175,18 +139,6 @@
           <EntitySet Name="MatchStatuses" EntityType="Self.MatchStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Words" EntityType="Self.Words" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Matches_Status" Association="Self.FK_Matches_Status">
-            <End Role="MatchStatuses" EntitySet="MatchStatuses" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Matches_Word" Association="Self.FK_Matches_Word">
-            <End Role="Words" EntitySet="Words" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MatchScores_Match" Association="Self.FK_MatchScores_Match">
-            <End Role="Matches" EntitySet="Matches" />
-            <End Role="MatchScores" EntitySet="MatchScores" />
-          </AssociationSet>
           <AssociationSet Name="FK_MatchScores_Result" Association="Self.FK_MatchScores_Result">
             <End Role="MatchResults" EntitySet="MatchResults" />
             <End Role="MatchScores" EntitySet="MatchScores" />
