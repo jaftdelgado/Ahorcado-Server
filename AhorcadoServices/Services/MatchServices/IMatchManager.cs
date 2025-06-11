@@ -13,5 +13,8 @@ namespace AhorcadoServices.Services.MatchServices
     {
         [OperationContract]
         MatchDTO CreateMatch(int player1Id, int wordId);
+
+        [OperationContract]
+        MatchDTO JoinMatch(int matchId, int player2Id);
     }
 }

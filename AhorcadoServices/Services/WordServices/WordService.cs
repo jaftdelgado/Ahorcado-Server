@@ -10,16 +10,16 @@ namespace Services.WordServices
 {
     public class WordService : IWordManager
     {
-        public List<int> GetDifficults(int categoryId)
+        public List<int> GetDifficults(int categoryId, int languageId)
         {
             var dao = new WordDAO();
-            return dao.GetDifficults(categoryId);
+            return dao.GetDifficults(categoryId, languageId);
         }
 
-        public List<WordDTO> GetWords(int categoryId, int difficult)
+        public List<WordDTO> GetWords(int categoryId, int difficult, int languageId)
         {
             var dao = new WordDAO();
-            return dao.GetWords(categoryId, difficult);
+            return dao.GetWords(categoryId, difficult, languageId);
         }
     }
 }

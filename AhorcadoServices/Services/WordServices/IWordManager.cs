@@ -12,9 +12,9 @@ namespace AhorcadoServices.Services.WordServices
     public interface IWordManager
     {
         [OperationContract]
-        List<int> GetDifficults(int categoryId);
+        List<int> GetDifficults(int categoryId, int languageId);
 
         [OperationContract]
-        List<WordDTO> GetWords(int categoryId, int difficult);
+        List<WordDTO> GetWords(int categoryId, int difficult, int languageId);
     }
 }

@@ -15,5 +15,11 @@ namespace Services.MatchServices
             var dao = new MatchDAO();
             return dao.CreateMatch(player1Id, wordId);
         }
+
+        public MatchDTO JoinMatch(int matchId, int player2Id)
+        {
+            var dao = new MatchDAO();
+            return dao.JoinMatch(matchId, player2Id);
+        }
     }
 }

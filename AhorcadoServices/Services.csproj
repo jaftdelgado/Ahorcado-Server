@@ -64,6 +64,9 @@
     <Compile Include="Services\CategoryServices\CategoryDAO.cs" />
     <Compile Include="Services\CategoryServices\CategoryService.cs" />
     <Compile Include="Services\CategoryServices\ICategoryManager.cs" />
+    <Compile Include="Services\LanguageServices\ILanguageManager.cs" />
+    <Compile Include="Services\LanguageServices\LanguageDAO.cs" />
+    <Compile Include="Services\LanguageServices\LanguageService.cs" />
     <Compile Include="Services\MatchServices\IMatchManager.cs" />
     <Compile Include="Services\MatchServices\MatchDAO.cs" />
     <Compile Include="Services\MatchServices\MatchService.cs" />
