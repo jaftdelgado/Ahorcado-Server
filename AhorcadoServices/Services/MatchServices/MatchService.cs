@@ -21,5 +21,11 @@ namespace Services.MatchServices
             var dao = new MatchDAO();
             return dao.JoinMatch(matchId, player2Id);
         }
+
+        public List<AvailableMatchDTO> GetAvailableMatches()
+        {
+            var dao = new MatchDAO();
+            return dao.GetAvailableMatches();
+        }
     }
 }

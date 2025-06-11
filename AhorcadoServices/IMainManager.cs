@@ -31,5 +31,8 @@ namespace Services
 
         [OperationContract]
         List<LanguageDTO> GetLanguages();
+
+        [OperationContract]
+        List<AvailableMatchDTO> GetAvailableMatches();
     }
 }
