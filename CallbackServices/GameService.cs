@@ -76,7 +76,6 @@ namespace GameServices
                         match.Callback2 = null;
                     }
 
-                    // Notificar al otro jugador sobre la desconexión
                     if (player1Left && match.Callback2 != null)
                     {
                         match.Callback2.OnPlayerLeft(matchId, playerId);
@@ -86,7 +85,6 @@ namespace GameServices
                         match.Callback1.OnPlayerLeft(matchId, playerId);
                     }
 
-                    // Eliminar partida si no hay jugadores
                     if (match.MatchInfo.Player1 == null && match.MatchInfo.Player2 == null)
                     {
                         _activeMatches.Remove(matchId);
