@@ -66,6 +66,10 @@
       <Project>{923CC74B-0BCE-4B76-ACAE-F53B9B84FF0B}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CallbackServices\GameServices.csproj">
+      <Project>{75478f6a-f251-4b69-aabd-1fbc7692d7d2}</Project>
+      <Name>GameServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

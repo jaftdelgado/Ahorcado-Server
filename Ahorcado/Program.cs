@@ -1,4 +1,5 @@
-﻿using Services;
+﻿using GameServices;
+using Services;
 using System;
 using System.ServiceModel;
 
@@ -8,11 +9,13 @@ namespace Host
     {
         static void Main(string[] args)
         {
-            using (ServiceHost serviceHost = new ServiceHost(typeof(MainService)))
+            using (ServiceHost mainServiceHost = new ServiceHost(typeof(MainService)))
+            using (ServiceHost ahorcadoServiceHost = new ServiceHost(typeof(GameService)))
             {
                 try
                 {
-                    serviceHost.Open();
+                    mainServiceHost.Open();
+                    ahorcadoServiceHost.Open();
 
                     DateTime currentDateTime = DateTime.Now;
                     Console.WriteLine($"AhorcadoServer is running - Start Time: [{currentDateTime}]");
@@ -24,7 +27,8 @@ namespace Host
                 }
                 finally
                 {
-                    serviceHost.Abort();
+                    mainServiceHost.Abort();
+                    ahorcadoServiceHost.Abort();
                     Console.ReadLine();
                 }
             }
