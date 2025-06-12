@@ -109,9 +109,9 @@ namespace Services.MatchServices
             }
         }
 
-        public List<MatchDTO> GetAvailableMatches()
+        public List<MatchDTO> GetAvailableMatches(int playerId)
         {
-            var matches = dao.GetAvailableMatches();
+            var matches = dao.GetAvailableMatches(playerId);
 
             var result = new List<MatchDTO>();
 
