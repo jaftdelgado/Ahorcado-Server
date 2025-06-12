@@ -79,8 +79,11 @@ namespace Services.PlayerServices
                 existingPlayer.LastName = playerDTO.LastName;
                 existingPlayer.BirthDay = playerDTO.BirthDay;
                 existingPlayer.PhoneNumber = playerDTO.PhoneNumber;
+                existingPlayer.EmailAddress = playerDTO.EmailAddress;
                 existingPlayer.ProfilePic = playerDTO.ProfilePic;
                 existingPlayer.SelectedLanguageID = playerDTO.SelectedLanguageID;
+                existingPlayer.Password = playerDTO.Password;
+                existingPlayer.Username = playerDTO.Username;
 
                 context.SaveChanges();
                 return true;

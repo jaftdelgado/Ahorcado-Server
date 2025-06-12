@@ -47,15 +47,15 @@ namespace AhorcadoServices.Services.MatchServices
             }
         }
 
-        public List<Matches> GetAvailableMatches()
+        public List<Matches> GetAvailableMatches(int playerId)
         {
             using (var context = new ahorcadoDBEntities())
             {
                 return context.Matches
-                              .Where(m => m.StatusID == 1 && m.Player2 == null)
-                              .Include("Words")
-                              .Include("Players")
-                              .ToList();
+                      .Where(m => m.StatusID == 1 && m.Player2 == null && m.Player1 != playerId)
+                      .Include("Words")
+                      .Include("Players")
+                      .ToList();
             }
         }
 
