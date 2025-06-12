@@ -116,13 +116,22 @@ namespace GameServices
                         match.MatchInfo.RemainingAttempts--;
                     }
 
-                    bool isWordGuessed = word.All(c => c == ' ' || match.MatchInfo.GuessedLetters.Contains(c.ToString()));
-                    match.MatchInfo.IsGameOver = isWordGuessed || match.MatchInfo.RemainingAttempts <= 0;
+                    bool wordIsGuessed = word.All(c => c == ' ' || match.MatchInfo.GuessedLetters.Contains(c.ToString(), StringComparer.OrdinalIgnoreCase));
+                    match.MatchInfo.IsGameOver = wordIsGuessed || match.MatchInfo.RemainingAttempts <= 0;
+
+                    if (match.MatchInfo.IsGameOver)
+                    {
+                        int winnerId = wordIsGuessed ? playerId : match.MatchInfo.Player1.PlayerId;
+
+                        match.Callback1?.OnGameOver(matchId, winnerId);
+                        match.Callback2?.OnGameOver(matchId, winnerId);
+                    }
 
                     match.Callback1?.OnLetterGuessed(matchId, letter, isCorrect, match.MatchInfo.RemainingAttempts, match.MatchInfo.IsGameOver);
                     match.Callback2?.OnLetterGuessed(matchId, letter, isCorrect, match.MatchInfo.RemainingAttempts, match.MatchInfo.IsGameOver);
                 }
             }
         }
+
     }
 }

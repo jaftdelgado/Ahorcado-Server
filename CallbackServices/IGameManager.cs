@@ -31,5 +31,8 @@ namespace GameServices
 
         [OperationContract(IsOneWay = true)]
         void OnLetterGuessed(int matchId, string letter, bool isCorrect, int remainingAttempts, bool isGameOver);
+
+        [OperationContract(IsOneWay = true)]
+        void OnGameOver(int matchId, int winnerPlayerId);
     }
 }
