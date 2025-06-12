@@ -20,12 +20,11 @@ namespace Services.WordServices
             }
         }
 
-        public List<WordDTO> GetWords(int categoryId, int difficult, int languageId)
+        public List<WordDTO> GetWords()
         {
             using (var context = new ahorcadoDBEntities())
             {
                 return context.Words
-                    .Where(w => w.CategoryID == categoryId && w.Difficult == difficult && w.LanguageID == languageId)
                     .Select(w => new WordDTO
                     {
                         WordID = w.WordID,

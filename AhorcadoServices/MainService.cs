@@ -48,7 +48,7 @@ namespace Services
         #region WordServices
         public List<int> GetDifficults(int categoryId, int languageId) => _wordService.GetDifficults(categoryId,languageId);
 
-        public List<WordDTO> GetWords(int categoryId, int difficult, int languageId) => _wordService.GetWords(categoryId, difficult, languageId);
+        public List<WordDTO> GetWords() => _wordService.GetWords();
         #endregion
 
 
@@ -65,6 +65,7 @@ namespace Services
 
         #region LanguageServices
         public List<LanguageDTO> GetLanguages() => _languageService.GetLanguages();
+
         #endregion
     }
 }
