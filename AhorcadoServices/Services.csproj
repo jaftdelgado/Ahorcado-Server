@@ -58,6 +58,7 @@
     <Compile Include="DTOs\MatchScoreDTO.cs" />
     <Compile Include="DTOs\MatchStatusDTO.cs" />
     <Compile Include="DTOs\PlayerDTO.cs" />
+    <Compile Include="DTOs\PlayerMatchHistoryDTO.cs" />
     <Compile Include="DTOs\WordDTO.cs" />
     <Compile Include="IMainManager.cs" />
     <Compile Include="MainService.cs" />
