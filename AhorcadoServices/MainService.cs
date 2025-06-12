@@ -1,4 +1,5 @@
-﻿using AhorcadoServices.Services.CategoryServices;
+﻿using AhorcadoServices.DTOs;
+using AhorcadoServices.Services.CategoryServices;
 using AhorcadoServices.Services.LanguageServices;
 using AhorcadoServices.Services.MatchServices;
 using AhorcadoServices.Services.WordServices;
@@ -61,6 +62,9 @@ namespace Services
 
         public List<MatchDTO> GetAvailableMatches()
             => _matchService.GetAvailableMatches();
+
+        public List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId)
+            => _matchService.GetPlayerMatchHistory(playerId);
         #endregion
 
         #region LanguageServices

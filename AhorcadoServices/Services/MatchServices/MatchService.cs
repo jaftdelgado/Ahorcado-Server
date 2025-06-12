@@ -1,5 +1,6 @@
-﻿using AhorcadoServices.Services.MatchServices;
+using AhorcadoServices.Services.MatchServices;
 using Model;
+using AhorcadoServices.DTOs;
 using Services.DTOs;
 using System;
 using System.Collections.Generic;
@@ -152,6 +153,11 @@ namespace Services.MatchServices
             }
 
             return result;
+        }
+
+        public List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId)
+        {
+            return dao.GetPlayerMatchHistory(playerId);
         }
     }
 }

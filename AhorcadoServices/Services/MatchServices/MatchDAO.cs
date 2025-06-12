@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using AhorcadoServices.DTOs;
+using Model;
 using Services.DTOs;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,39 @@ namespace AhorcadoServices.Services.MatchServices
                               .Include("Words")
                               .Include("Players")
                               .ToList();
+            }
+        }
+
+        public List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId)
+        {
+            using (var context = new ahorcadoDBEntities())
+            {
+                // IDs de estados finalizado/cancelado (ajusta según tus valores reales)
+                var finishedOrCancelled = new[] { 3, 4 };
+
+                var query = from m in context.Matches
+                            where (m.Player1 == playerId || m.Player2 == playerId)
+                                  && finishedOrCancelled.Contains(m.StatusID)
+                            join w in context.Words on m.WordID equals w.WordID
+                            join ms in context.MatchScores on new { MatchID = m.MatchID, PlayerID = playerId }
+                                equals new { ms.MatchID, ms.PlayerID }
+                            join r in context.MatchResults on ms.ResultID equals r.ResultID
+                            join p1 in context.Players on m.Player1 equals p1.PlayerID
+                            join p2 in context.Players on m.Player2 equals p2.PlayerID into p2Join
+                            from p2 in p2Join.DefaultIfEmpty()
+                            select new PlayerMatchHistoryDTO
+                            {
+                                MatchID = m.MatchID,
+                                OpponentName = m.Player1 == playerId
+                                    ? (p2 != null ? p2.Username : "N/A")
+                                    : p1.Username,
+                                PlayedWord = w.Word,
+                                EndDate = m.EndDate,
+                                ResultName = r.ResultName,
+                                Points = ms.Points
+                            };
+
+                return query.ToList();
             }
         }
     }
