@@ -19,7 +19,7 @@ namespace AhorcadoServices.Services.MatchServices
         MatchDTO JoinMatch(int matchId, int player2Id);
 
         [OperationContract]
-        List<AvailableMatchDTO> GetAvailableMatches();
+        List<MatchDTO> GetAvailableMatches();
 
         [OperationContract]
         List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId);

@@ -60,7 +60,7 @@ namespace Services
         public MatchDTO JoinMatch(int matchId, int player2Id)
             => _matchService.JoinMatch(matchId, player2Id);
 
-        public List<AvailableMatchDTO> GetAvailableMatches()
+        public List<MatchDTO> GetAvailableMatches()
             => _matchService.GetAvailableMatches();
 
         public List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId)

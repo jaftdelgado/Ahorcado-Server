@@ -14,16 +14,7 @@ namespace Model
     
     public partial class MatchStatuses
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MatchStatuses()
-        {
-            this.Matches = new HashSet<Matches>();
-        }
-    
         public int StatusID { get; set; }
         public string StatusName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Matches> Matches { get; set; }
     }
 }

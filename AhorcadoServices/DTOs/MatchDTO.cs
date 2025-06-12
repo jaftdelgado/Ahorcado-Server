@@ -10,10 +10,10 @@ namespace Services.DTOs
         public int MatchID { get; set; }
 
         [DataMember]
-        public int Player1 { get; set; }
+        public int Player1ID { get; set; }
 
         [DataMember]
-        public int? Player2 { get; set; }
+        public int? Player2ID { get; set; }
 
         [DataMember]
         public int WordID { get; set; }
@@ -26,5 +26,15 @@ namespace Services.DTOs
 
         [DataMember]
         public int StatusID { get; set; }
+
+        [DataMember]
+        public WordDTO Word { get; set; }
+
+        [DataMember]
+        public PlayerDTO Player1 { get; set; }
+
+        [DataMember]
+        public PlayerDTO Player2 { get; set; }
+
     }
 }

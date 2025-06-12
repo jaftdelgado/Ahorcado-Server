@@ -27,11 +27,11 @@ namespace Model
     
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Languages> Languages { get; set; }
-        public virtual DbSet<Matches> Matches { get; set; }
         public virtual DbSet<MatchResults> MatchResults { get; set; }
         public virtual DbSet<MatchScores> MatchScores { get; set; }
         public virtual DbSet<MatchStatuses> MatchStatuses { get; set; }
-        public virtual DbSet<Players> Players { get; set; }
         public virtual DbSet<Words> Words { get; set; }
+        public virtual DbSet<Players> Players { get; set; }
+        public virtual DbSet<Matches> Matches { get; set; }
     }
 }
