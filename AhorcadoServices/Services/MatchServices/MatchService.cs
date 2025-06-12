@@ -1,4 +1,5 @@
-﻿using AhorcadoServices.Services.MatchServices;
+﻿using AhorcadoServices.DTOs;
+using AhorcadoServices.Services.MatchServices;
 using Services.DTOs;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,11 @@ namespace Services.MatchServices
         {
             var dao = new MatchDAO();
             return dao.GetAvailableMatches();
+        }
+
+        public List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId)
+        {
+            return dao.GetPlayerMatchHistory(playerId);
         }
     }
 }

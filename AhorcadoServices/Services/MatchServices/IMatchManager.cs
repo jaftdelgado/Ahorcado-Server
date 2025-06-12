@@ -1,10 +1,11 @@
-﻿using System;
+﻿using AhorcadoServices.DTOs;
+using Services.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using System.ServiceModel;
-using Services.DTOs;
 
 namespace AhorcadoServices.Services.MatchServices
 {
@@ -19,5 +20,8 @@ namespace AhorcadoServices.Services.MatchServices
 
         [OperationContract]
         List<AvailableMatchDTO> GetAvailableMatches();
+
+        [OperationContract]
+        List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId);
     }
 }
