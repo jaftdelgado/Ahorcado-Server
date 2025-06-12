@@ -15,6 +15,6 @@ namespace AhorcadoServices.Services.WordServices
         List<int> GetDifficults(int categoryId, int languageId);
 
         [OperationContract]
-        List<WordDTO> GetWords(int categoryId, int difficult, int languageId);
+        List<WordDTO> GetWords();
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AhorcadoServices.Services.WordServices;
 using Services.DTOs;
 
@@ -16,10 +12,10 @@ namespace Services.WordServices
             return dao.GetDifficults(categoryId, languageId);
         }
 
-        public List<WordDTO> GetWords(int categoryId, int difficult, int languageId)
+        public List<WordDTO> GetWords()
         {
             var dao = new WordDAO();
-            return dao.GetWords(categoryId, difficult, languageId);
+            return dao.GetWords();
         }
     }
 }

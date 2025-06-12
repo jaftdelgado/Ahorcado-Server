@@ -1,38 +1,16 @@
-﻿using Services.DTOs;
-using Services.PlayerServices;
-using System.Collections.Generic;
+﻿using Services.PlayerServices;
 using System.ServiceModel;
 using AhorcadoServices.Services.MatchServices;
 using AhorcadoServices.Services.WordServices;
 using AhorcadoServices.Services.CategoryServices;
+using AhorcadoServices.Services.LanguageServices;
 
 namespace Services
 {
     [ServiceContract]
-    public interface IMainManager : IPlayerManager
+    public interface IMainManager : IPlayerManager, IMatchManager, ICategoryManager, IWordManager, ILanguageManager
     {
         [OperationContract]
         bool Ping();
-
-        [OperationContract]
-        List<CategoryDTO> GetCategories();
-
-        [OperationContract]
-        List<int> GetDifficults(int categoryId, int languageId);
-
-        [OperationContract]
-        List<WordDTO> GetWords(int categoryId, int difficult, int languageId);
-
-        [OperationContract]
-        MatchDTO CreateMatch(int player1Id, int wordId);
-
-        [OperationContract]
-        MatchDTO JoinMatch(int matchId, int player2Id);
-
-        [OperationContract]
-        List<LanguageDTO> GetLanguages();
-
-        [OperationContract]
-        List<AvailableMatchDTO> GetAvailableMatches();
     }
 }

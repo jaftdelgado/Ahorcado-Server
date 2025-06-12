@@ -10,10 +10,24 @@ namespace Services.MatchServices
 {
     public class MatchService : IMatchManager
     {
+        private readonly MatchDAO dao = new MatchDAO();
+
         public MatchDTO CreateMatch(int player1Id, int wordId)
         {
-            var dao = new MatchDAO();
-            return dao.CreateMatch(player1Id, wordId);
+            var match = dao.CreateMatch(player1Id, wordId);
+
+            var dto = new MatchDTO
+            {
+                MatchID = match.MatchID,
+                Player1 = match.Player1,
+                Player2 = match.Player2,
+                WordID = match.WordID,
+                CreateDate = match.CreateDate,
+                EndDate = match.EndDate,
+                StatusID = match.StatusID
+            };
+
+            return dto;
         }
 
         public MatchDTO JoinMatch(int matchId, int player2Id)
