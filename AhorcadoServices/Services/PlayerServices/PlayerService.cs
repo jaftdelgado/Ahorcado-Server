@@ -1,10 +1,14 @@
 ﻿using Services.DTOs;
+using System;
+using System.Data.Entity;
+using System.Runtime.Remoting.Contexts;
 
 namespace Services.PlayerServices
 {
     public class PlayerService : IPlayerManager
     {
         PlayerDAO playerDAO = new PlayerDAO();
+        private readonly DbContext dbContext;
 
         public PlayerDTO LogIn(string username, string password)
         {
@@ -20,9 +24,11 @@ namespace Services.PlayerServices
             return playerDAO.RegisterPlayer(player);
         }
 
-        public bool UpdatePlayerInfo(PlayerDTO player)
+        public bool UpdatePlayerInfo(PlayerDTO playerdto)
         {
-            return playerDAO.UpdatePlayerInfo(player);
+            return playerDAO.UpdatePlayerInfo(playerdto);
         }
+
+          
     }
 }
