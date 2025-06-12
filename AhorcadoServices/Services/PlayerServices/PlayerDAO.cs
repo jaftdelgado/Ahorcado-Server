@@ -1,5 +1,6 @@
-﻿using Services.DTOs;
-using Model;
+﻿using Model;
+using Services.DTOs;
+using System;
 using System.Linq;
 
 namespace Services.PlayerServices
@@ -79,13 +80,27 @@ namespace Services.PlayerServices
                 existingPlayer.LastName = playerDTO.LastName;
                 existingPlayer.BirthDay = playerDTO.BirthDay;
                 existingPlayer.PhoneNumber = playerDTO.PhoneNumber;
-                existingPlayer.EmailAddress = playerDTO.EmailAddress;
                 existingPlayer.ProfilePic = playerDTO.ProfilePic;
                 existingPlayer.SelectedLanguageID = playerDTO.SelectedLanguageID;
                 existingPlayer.Password = playerDTO.Password;
                 existingPlayer.Username = playerDTO.Username;
 
-                context.SaveChanges();
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        Console.WriteLine($"Entidad: {eve.Entry.Entity.GetType().Name}, Estado: {eve.Entry.State}");
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine($"- Propiedad: {ve.PropertyName}, Error: {ve.ErrorMessage}");
+                        }
+                    }
+                    throw; // O puedes retornar false si prefieres
+                }
                 return true;
             }
         }
