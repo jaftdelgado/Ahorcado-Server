@@ -19,6 +19,8 @@ namespace Model
         public int ResultID { get; set; }
         public int Points { get; set; }
     
+        public virtual Matches Matches { get; set; }
         public virtual MatchResults MatchResults { get; set; }
+        public virtual Players Players { get; set; }
     }
 }

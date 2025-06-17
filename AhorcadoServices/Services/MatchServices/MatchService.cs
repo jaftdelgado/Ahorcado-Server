@@ -2,11 +2,8 @@ using AhorcadoServices.Services.MatchServices;
 using Model;
 using AhorcadoServices.DTOs;
 using Services.DTOs;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.MatchServices
 {
@@ -174,7 +171,5 @@ namespace Services.MatchServices
         {
             return dao.DeclareVictoryForPlayer1(matchId);
         }
-
-
     }
 }
