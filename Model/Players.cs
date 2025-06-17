@@ -19,6 +19,7 @@ namespace Model
         {
             this.Matches = new HashSet<Matches>();
             this.Matches1 = new HashSet<Matches>();
+            this.MatchScores = new HashSet<MatchScores>();
         }
     
         public int PlayerID { get; set; }
@@ -38,5 +39,7 @@ namespace Model
         public virtual ICollection<Matches> Matches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Matches> Matches1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MatchScores> MatchScores { get; set; }
     }
 }

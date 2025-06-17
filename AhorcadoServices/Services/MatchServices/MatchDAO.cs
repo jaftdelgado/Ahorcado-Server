@@ -138,14 +138,27 @@ namespace AhorcadoServices.Services.MatchServices
 
                 player2.TotalScore += 10;
 
-                var score = new MatchScores
+                var winnerScore = new MatchScores
                 {
                     MatchID = match.MatchID,
                     PlayerID = player2.PlayerID,
                     ResultID = 1,
                     Points = 10
                 };
-                context.MatchScores.Add(score);
+                context.MatchScores.Add(winnerScore);
+
+                var player1 = context.Players.Find(match.Player1);
+                if (player1 != null)
+                {
+                    var loserScore = new MatchScores
+                    {
+                        MatchID = match.MatchID,
+                        PlayerID = player1.PlayerID,
+                        ResultID = 2,
+                        Points = 0
+                    };
+                    context.MatchScores.Add(loserScore);
+                }
 
                 context.SaveChanges();
                 return true;
@@ -168,14 +181,27 @@ namespace AhorcadoServices.Services.MatchServices
 
                 player1.TotalScore += 5;
 
-                var score = new MatchScores
+                var winnerScore = new MatchScores
                 {
                     MatchID = match.MatchID,
                     PlayerID = player1.PlayerID,
                     ResultID = 1,
                     Points = 5
                 };
-                context.MatchScores.Add(score);
+                context.MatchScores.Add(winnerScore);
+
+                var player2 = context.Players.Find(match.Player2.Value);
+                if (player2 != null)
+                {
+                    var loserScore = new MatchScores
+                    {
+                        MatchID = match.MatchID,
+                        PlayerID = player2.PlayerID,
+                        ResultID = 2,
+                        Points = 0
+                    };
+                    context.MatchScores.Add(loserScore);
+                }
 
                 context.SaveChanges();
                 return true;

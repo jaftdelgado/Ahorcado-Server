@@ -14,6 +14,12 @@ namespace Model
     
     public partial class Matches
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Matches()
+        {
+            this.MatchScores = new HashSet<MatchScores>();
+        }
+    
         public int MatchID { get; set; }
         public int Player1 { get; set; }
         public Nullable<int> Player2 { get; set; }
@@ -24,6 +30,9 @@ namespace Model
     
         public virtual Players Players { get; set; }
         public virtual Players Players1 { get; set; }
+        public virtual MatchStatuses MatchStatuses { get; set; }
         public virtual Words Words { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MatchScores> MatchScores { get; set; }
     }
 }

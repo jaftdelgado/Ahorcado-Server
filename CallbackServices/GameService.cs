@@ -1,4 +1,4 @@
-﻿using Services.DTOs;
+﻿using Services.MatchServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,8 @@ namespace GameServices
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class GameService : IGameManager
     {
+        private readonly MatchService _matchService = new MatchService();
+
         private readonly Dictionary<int, MatchInfoWithCallbacks> _activeMatches = new Dictionary<int, MatchInfoWithCallbacks>();
 
         public void JoinMatch(int matchId, PlayerInfoDTO player, WordInfoDTO word, int maxAttempts = 6)
