@@ -157,9 +157,9 @@ namespace Services.MatchServices
             return dao.GetPlayerMatchHistory(playerId);
         }
 
-        public bool ForfeitMatch(int matchId)
+        public bool ForfeitMatch(int matchId, int forfeitingPlayerId)
         {
-            return dao.ForfeitMatch(matchId);
+            return dao.ForfeitMatch(matchId, forfeitingPlayerId);
         }
 
         public bool DeclareVictoryForPlayer2(int matchId)

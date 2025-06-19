@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3061ba3b998e4822a3ec776eaec19ebe" Name="Diagram1">
+      <Diagram DiagramId="28fe539abd024293afac6a61ecb51c02" Name="Diagram1">
         <EntityTypeShape EntityType="ahorcadoDBModel.Categories" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ahorcadoDBModel.Languages" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ahorcadoDBModel.Matches" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
