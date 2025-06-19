@@ -1,4 +1,4 @@
-﻿using AhorcadoServices.Services.MatchServices;
+using AhorcadoServices.Services.MatchServices;
 using Services.DTOs;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,8 @@ namespace GameServices
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class GameService : IGameManager
     {
+        private readonly MatchService _matchService = new MatchService();
+
         private readonly Dictionary<int, MatchInfoWithCallbacks> _activeMatches = new Dictionary<int, MatchInfoWithCallbacks>();
         private readonly MatchDAO dao = new MatchDAO();
 
