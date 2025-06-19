@@ -91,6 +91,7 @@ namespace GameServices
                             Debug.WriteLine($"Error notifying player 2 about leave: {ex.Message}");
                         }
                     }
+
                     else if (isPlayer2 && match.Callback1 != null)
                     {
                         try
