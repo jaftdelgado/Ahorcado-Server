@@ -66,8 +66,8 @@ namespace Services
         public List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId)
             => _matchService.GetPlayerMatchHistory(playerId);
 
-        public bool ForfeitMatch(int matchId) 
-            => _matchService.ForfeitMatch(matchId);
+        public bool ForfeitMatch(int matchId, int forfeitingPlayerId) 
+            => _matchService.ForfeitMatch(matchId, forfeitingPlayerId);
 
         public bool DeclareVictoryForPlayer2(int matchId) 
             => _matchService.DeclareVictoryForPlayer2(matchId);

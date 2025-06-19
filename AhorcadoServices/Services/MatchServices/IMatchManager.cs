@@ -25,7 +25,7 @@ namespace AhorcadoServices.Services.MatchServices
         List<PlayerMatchHistoryDTO> GetPlayerMatchHistory(int playerId);
 
         [OperationContract]
-        bool ForfeitMatch(int matchId);
+        bool ForfeitMatch(int matchId, int forfeitingPlayerId);
 
         [OperationContract]
         bool DeclareVictoryForPlayer2(int matchId);

@@ -91,7 +91,7 @@ namespace AhorcadoServices.Services.MatchServices
             }
         }
 
-        public bool ForfeitMatch(int matchId)
+        public bool ForfeitMatch(int matchId, int forfeitingPlayerId)
         {
             using (var context = new ahorcadoDBEntities())
             {
@@ -102,20 +102,37 @@ namespace AhorcadoServices.Services.MatchServices
                 match.StatusID = 4;
                 match.EndDate = DateTime.Now;
 
-                var player1 = context.Players.Find(match.Player1);
-                if (player1 == null) return false;
+                var forfeitingPlayer = context.Players.Find(forfeitingPlayerId);
+                if (forfeitingPlayer == null) return false;
 
                 if (match.Player2 != null)
-                    player1.TotalScore -= 3;
-
-                var forfeitResult = new MatchScores
                 {
-                    MatchID = match.MatchID,
-                    PlayerID = player1.PlayerID,
-                    ResultID = 3,
-                    Points = -3
-                };
-                context.MatchScores.Add(forfeitResult);
+                    forfeitingPlayer.TotalScore -= 3;
+
+                    var forfeitResult = new MatchScores
+                    {
+                        MatchID = match.MatchID,
+                        PlayerID = forfeitingPlayer.PlayerID,
+                        ResultID = 3,
+                        Points = -3
+                    };
+                    context.MatchScores.Add(forfeitResult);
+
+                    int opponentId = match.Player1 == forfeitingPlayerId ? match.Player2.Value : match.Player1;
+                    var opponent = context.Players.Find(opponentId);
+
+                    if (opponent != null)
+                    {
+                        var opponentResult = new MatchScores
+                        {
+                            MatchID = match.MatchID,
+                            PlayerID = opponent.PlayerID,
+                            ResultID = 4,
+                            Points = 0
+                        };
+                        context.MatchScores.Add(opponentResult);
+                    }
+                }
 
                 context.SaveChanges();
                 return true;

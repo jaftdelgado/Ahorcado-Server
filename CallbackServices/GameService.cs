@@ -1,6 +1,8 @@
-﻿using Services.DTOs;
+﻿using AhorcadoServices.Services.MatchServices;
+using Services.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 
@@ -10,6 +12,7 @@ namespace GameServices
     public class GameService : IGameManager
     {
         private readonly Dictionary<int, MatchInfoWithCallbacks> _activeMatches = new Dictionary<int, MatchInfoWithCallbacks>();
+        private readonly MatchDAO dao = new MatchDAO();
 
         public void JoinMatch(int matchId, PlayerInfoDTO player, WordInfoDTO word, int maxAttempts = 6)
         {
@@ -61,28 +64,54 @@ namespace GameServices
             {
                 if (_activeMatches.TryGetValue(matchId, out var match))
                 {
-                    bool player1Left = match.MatchInfo.Player1?.PlayerId == playerId;
-                    bool player2Left = match.MatchInfo.Player2?.PlayerId == playerId;
+                    bool isPlayer1 = match.MatchInfo.Player1?.PlayerId == playerId;
+                    bool isPlayer2 = match.MatchInfo.Player2?.PlayerId == playerId;
 
-                    if (player1Left)
+                    if (isPlayer1 && match.MatchInfo.Player2 == null)
+                    {
+                        match.MatchInfo.Player1 = null;
+                        match.Callback1 = null;
+                        _activeMatches.Remove(matchId);
+                        return;
+                    }
+
+                    if (!match.MatchInfo.IsGameOver && (isPlayer1 || isPlayer2))
+                    {
+                        bool forfeitSuccess = dao.ForfeitMatch(matchId, playerId);
+                    }
+
+                    if (isPlayer1 && match.Callback2 != null)
+                    {
+                        try
+                        {
+                            match.Callback2.OnPlayerLeft(matchId, playerId);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"Error notifying player 2 about leave: {ex.Message}");
+                        }
+                    }
+                    else if (isPlayer2 && match.Callback1 != null)
+                    {
+                        try
+                        {
+                            match.Callback1.OnPlayerLeft(matchId, playerId);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"Error notifying player 1 about leave: {ex.Message}");
+                        }
+                    }
+
+                    if (isPlayer1)
                     {
                         match.MatchInfo.Player1 = null;
                         match.Callback1 = null;
                     }
-
-                    if (player2Left)
+                    else if (isPlayer2)
                     {
                         match.MatchInfo.Player2 = null;
                         match.Callback2 = null;
-                    }
-
-                    if (player1Left && match.Callback2 != null)
-                    {
-                        match.Callback2.OnPlayerLeft(matchId, playerId);
-                    }
-                    else if (player2Left && match.Callback1 != null)
-                    {
-                        match.Callback1.OnPlayerLeft(matchId, playerId);
                     }
 
                     if (match.MatchInfo.Player1 == null && match.MatchInfo.Player2 == null)
