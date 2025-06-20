@@ -83,7 +83,7 @@ namespace AhorcadoServices.Services.MatchServices
                                     : p1.Username,
                                 PlayedWord = w.Word,
                                 EndDate = m.EndDate,
-                                ResultName = r.ResultName,
+                                ResultID = r.ResultID,
                                 Points = ms.Points
                             };
 
