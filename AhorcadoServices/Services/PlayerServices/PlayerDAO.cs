@@ -99,10 +99,37 @@ namespace Services.PlayerServices
                             Console.WriteLine($"- Propiedad: {ve.PropertyName}, Error: {ve.ErrorMessage}");
                         }
                     }
-                    throw; // O puedes retornar false si prefieres
+                    throw;
                 }
                 return true;
             }
         }
+        public PlayerDTO GetPlayerById(int playerId)
+        {
+            using (var context = new ahorcadoDBEntities())
+            {
+                var player = context.Players.FirstOrDefault(p => p.PlayerID == playerId);
+
+                if (player == null)
+                    return null;
+
+                return new PlayerDTO
+                {
+                    PlayerID = player.PlayerID,
+                    FirstName = player.FirstName,
+                    LastName = player.LastName,
+                    Username = player.Username,
+                    Password = player.Password,
+                    PhoneNumber = player.PhoneNumber,
+                    BirthDay = player.BirthDay,
+                    ProfilePic = player.ProfilePic,
+                    TotalScore = player.TotalScore,
+                    SelectedLanguageID = player.SelectedLanguageID
+                };
+            }
+        }
+
+
     }
 }
+

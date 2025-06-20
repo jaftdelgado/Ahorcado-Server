@@ -3,6 +3,8 @@ using System;
 using System.Data.Entity;
 using System.Runtime.Remoting.Contexts;
 
+
+
 namespace Services.PlayerServices
 {
     public class PlayerService : IPlayerManager
@@ -28,7 +30,12 @@ namespace Services.PlayerServices
         {
             return playerDAO.UpdatePlayerInfo(playerdto);
         }
+        public PlayerDTO GetPlayerById(int playerId)
+        {
+            var playerDAO = new PlayerDAO();
+            return playerDAO.GetPlayerById(playerId);
+        }
 
-          
+
     }
 }
