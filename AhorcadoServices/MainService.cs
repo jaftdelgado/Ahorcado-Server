@@ -38,6 +38,8 @@ namespace Services
         public bool RegisterPlayer(PlayerDTO player) => _playerService.RegisterPlayer(player);
 
         public bool UpdatePlayerInfo(PlayerDTO player) => _playerService.UpdatePlayerInfo(player);
+
+        public PlayerDTO GetPlayerById(int playerId) => _playerService.GetPlayerById(playerId);
         #endregion
 
 

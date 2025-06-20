@@ -14,6 +14,7 @@ namespace Services.PlayerServices
 
         [OperationContract]
         bool UpdatePlayerInfo(PlayerDTO player);
+
         [OperationContract]
         PlayerDTO GetPlayerById(int playerId);
     }
