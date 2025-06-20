@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace AhorcadoServices.DTOs
@@ -23,7 +19,7 @@ namespace AhorcadoServices.DTOs
         public DateTime? EndDate { get; set; }
 
         [DataMember]
-        public string ResultName { get; set; }
+        public int ResultID { get; set; }
 
         [DataMember]
         public int Points { get; set; }
